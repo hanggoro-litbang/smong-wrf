@@ -1,0 +1,16 @@
+# akses SMONG
+ssh psiriset@10.20.234.6
+
+# load module
+module load oneapi/tbb
+module load oneapi/compiler-rt
+module load oneapi/umf
+module load oneapi/compiler-intel-llvm/latest
+module load oneapi/mpi
+ml load hwloc
+ml load prun
+ml load ucx
+
+#Instal libraries
+
+
