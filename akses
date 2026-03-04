@@ -11,6 +11,12 @@ ml load hwloc
 ml load prun
 ml load ucx
 
-#Instal libraries
+# export env
+export CC=icx
+export FC=ifx
+export CXX=icpx
+export MPI=mpicc
 
+# Instal libraries
+# Zlib
 
