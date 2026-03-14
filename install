@@ -107,4 +107,40 @@ vi /home/psiriset/raw/ioapi/ioapi/sortic.c
 make configure
 make
 make install
-
+# WRF
+export WRFIO_NCD_LARGE_FILE_SUPPORT=1
+./configure
+./clean -aa
+# pilih 78 dan 1
+# edit file configure.wrf
+#line 136 dan 137
+# DM_FC           =       mpiifx -f90=$(SFC)
+# DM_CC           =       mpiicx -cc=$(SCC)
+./compile 2>&1 | tee compile.em.log
+# WPS
+export WRF_DIR=../WRFV4.7.1
+export jasper=/home/psiriset/libraries
+export JASPERLIB=/home/psiriset/libraries/lib
+export JASPERINC=/home/psiriset/libraries/include
+./configure
+# pilih 19
+# edit configure.wps
+# dan ubah mpif90|mpiifx dan mpicc|mpiicx
+./compile 2>&1 | tee compile.wps.log
+#WRFPLUS
+export NETCDF=/home/psiriset/libraries
+export HDF5=/home/psiriset/libraries
+./configure wrfplus
+# pilih 40
+# edit configure.wrf
+# dan ubah mpif90|mpiifx dan mpicc|mpiicx
+./compile wrfplus 2>&1 | tee wrfplus.compile.log
+# WRFDA
+export NETCDF=/home/psiriset/libraries
+export HDF5=/home/psiriset/libraries
+export WRFPLUS_DIR=../WRFPLUSV4.7.1
+./configure 4dvar
+# pilih 40
+# edit configure.wrf
+# dan ubah mpif90|mpiifx dan mpicc|mpiicx
+./compile all_wrfvar 2>&1 | tee wrfda.compile.log
