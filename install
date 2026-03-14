@@ -1,3 +1,4 @@
+# Installation based on https://github.com/HathewayWill/WRF-MOSIT/blob/main/WRF-MOSIT.sh
 # akses SMONG
 ssh psiriset@10.20.234.6
 
@@ -10,6 +11,8 @@ module load oneapi/mpi
 ml load hwloc
 ml load prun
 ml load ucx
+
+source /software/compilers/intel-oneapi/2025.2.1/setvars.sh
 
 # export env
 export CC=icx
