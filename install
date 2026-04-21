@@ -79,6 +79,8 @@ export HDF5_PLUGIN_PATH=/home/psiriset/libraries/hdf5/lib/plugin
 export CPPFLAGS="-I$DIR/include -I$DIR/include"
 export LDFLAGS="-L$DIR/lib -L$DIR/lib -Wl,-rpath,$DIR/lib -Wl,-rpath,$DIR/lib"
 export LIBS="-lnetcdf -lpnetcdf -lcurl -lhdf5_hl -lhdf5 -lz -lm -ldl -lgcc -lgfortran"
+CC=mpiicx FC=mpiifx CXX=mpiicpx F90=mpiifx F77=mpiifx \
+./configure --prefix=/home/wido/libraries --enable-netcdf-4 --enable-netcdf4 --enable-parallel-tests --enable-logging --enable-hdf5
 #ioapi
 mkdir ioapi
 wget ioapi.tar.gz
