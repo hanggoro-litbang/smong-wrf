@@ -52,7 +52,8 @@ make install
 * jika error kemungkinan masalahnya disini (bisa update jasper ver 2)
 # HDF5 (1.12.3)
 wget -c https://github.com/HDFGroup/hdf5/releases/download/hdf5_$HDF5_Version/hdf5-1.14.6.tar.gz
-export CFLAGS="-O3 -fPIC"
+export CFLAGS="-O3 -fPIC -Wno-unused-command-line-argument -Wno-implicit-function-declaration -Wno-incompatible-function-pointer-types"
+#export CFLAGS="-O3 -fno-strict-aliasing"
 export LDFLAGS="-L/home/psiriset/libraries/lib -Wl,-rpath,/home/psiriset/libraries/lib"
 CC=mpiicx FC=mpiifx F77=mpiifx F90=mpiifx CXX=mpiicpx ./configure --prefix=/home/psiriset/libraries --with-zlib=/home/psiriset/libraries --enable-hl --enable-fortran --enable-parallel
 make
@@ -79,8 +80,7 @@ export HDF5_PLUGIN_PATH=/home/psiriset/libraries/hdf5/lib/plugin
 export CPPFLAGS="-I/home/psiriset/libraries/include -I/home/psiriset/libraries/include/jasper -I/home/psiriset/libraries/include/libpng16" 
 export LDFLAGS="-L/home/psiriset/libraries/lib -Wl,-rpath,/home/psiriset/libraries/lib"
 export LIBS="-lnetcdf -lpnetcdf -lcurl -lhdf5_hl -lhdf5 -lz -lm -ldl -lgcc -lgfortran"
-CC=mpiicx FC=mpiifx CXX=mpiicpx F90=mpiifx F77=mpiifx \
-./configure --prefix=/home/wido/libraries --enable-netcdf4 --enable-parallel-tests --enable-logging --enable-hdf5
+CC=mpiicx FC=mpiifx CXX=mpiicpx F90=mpiifx F77=mpiifx ./configure --prefix=/home/psiriset/libraries --enable-parallel-tests
 #ioapi
 mkdir ioapi
 wget ioapi.tar.gz
@@ -150,3 +150,7 @@ export WRFPLUS_DIR=../WRFPLUSV4.7.1
 # edit configure.wrf
 # dan ubah mpif90|mpiifx dan mpicc|mpiicx
 ./compile all_wrfvar 2>&1 | tee wrfda.compile.log
+
+# reminder untuk CRTM himawari
+cek file ahi.info WRFDA/var/run/ahi.info (ubah 2 menjadi 3)
+https://forum.mmm.ucar.edu/threads/assimilate-himawari-ahi-data.15889/
